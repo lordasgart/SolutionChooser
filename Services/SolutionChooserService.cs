@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Microsoft.Extensions.Options;
 using SolutionChooser.Interfaces;
@@ -14,6 +16,11 @@ namespace SolutionChooser.Services
         public SolutionChooserService(IOptions<SolutionChooserOptions> solutionChooserOptions)
         {
             _solutionChooserOptions = solutionChooserOptions;
+        }
+
+        public IEnumerable<string> GetSolutions()
+        {
+            return Directory.GetFiles(_solutionChooserOptions.Value.Directory, "*.sln", SearchOption.AllDirectories);
         }
     }
 }

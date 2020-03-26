@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -34,8 +35,17 @@ namespace SolutionChooser
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            var switchMappings = new Dictionary<string, string>()
+            {
+                { "-dir", "Options:SolutionChooserOptions:Directory" },
+                { "-vspath", "Options:SolutionChooserOptions:VisualStudioPath" },
+                { "--directory", "Options:SolutionChooserOptions:Directory" },
+                { "--visualstudiopath", "Options:SolutionChooserOptions:VisualStudioPath" }
+            };
+
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddJsonFile("appsettings.json");
+            configurationBuilder.AddCommandLine(Environment.GetCommandLineArgs(), switchMappings);
 
             var solutionChooserOptions = new SolutionChooserOptions();
 

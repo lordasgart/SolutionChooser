@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SolutionChooser": {
+      "commandName": "Project",
+      "commandLineArgs": "-dir=\"C:\\git\\SalesNetwork\\IdentityServer\""
+    }
+  }
+}

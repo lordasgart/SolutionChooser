@@ -6,5 +6,6 @@ namespace SolutionChooser.Interfaces
 {
     public interface ISolutionChooserService
     {
+        IEnumerable<string> GetSolutions();
     }
 }
