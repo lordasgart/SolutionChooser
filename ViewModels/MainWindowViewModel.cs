@@ -37,6 +37,14 @@ namespace SolutionChooser.ViewModels
             set => SetProperty(ref _solutions, value);
         }
 
+        private string _directory;
+
+        public string Directory
+        {
+            get => _directory;
+            set => SetProperty(ref _directory, value);
+        }
+
         public MainWindowViewModel(ISolutionChooserService solutionChooserService, IOptions<SolutionChooserOptions> solutionChooserOptions)
         {
             _solutionChooserService = solutionChooserService;
@@ -47,6 +55,8 @@ namespace SolutionChooser.ViewModels
             Solutions = new ObservableCollection<string>(_solutionChooserService.GetSolutions());
 
             SelectedSolution = Solutions.FirstOrDefault();
+
+            Directory = solutionChooserOptions.Value.Directory;
         }
 
         private bool CanOpenSolution()

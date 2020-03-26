@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.Extensions.Options;
 using SolutionChooser.Interfaces;
@@ -20,7 +21,9 @@ namespace SolutionChooser.Services
 
         public IEnumerable<string> GetSolutions()
         {
-            return Directory.GetFiles(_solutionChooserOptions.Value.Directory, "*.sln", SearchOption.AllDirectories);
+            var solutions = Directory.GetFiles(_solutionChooserOptions.Value.Directory, "*.sln", SearchOption.AllDirectories);
+            var csprojs = Directory.GetFiles(_solutionChooserOptions.Value.Directory, "*.csproj", SearchOption.AllDirectories);
+            return !solutions.Any() ? csprojs : solutions;
         }
     }
 }
