@@ -66,7 +66,7 @@ namespace SolutionChooser.ViewModels
 
         private void OpenSolution()
         {
-            Process.Start(_solutionChooserOptions.Value.VisualStudioPath, SelectedSolution);
+            Process.Start(_solutionChooserOptions.Value.VisualStudioPath.Replace("\"",""), SelectedSolution);
         }
     }
 }
